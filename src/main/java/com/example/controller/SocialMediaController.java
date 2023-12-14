@@ -83,4 +83,9 @@ public class SocialMediaController {
     return ResponseEntity.badRequest().build();
   }
 
+  @GetMapping("/accounts/{account_id}/messages")
+  public ResponseEntity<List<Message>> getAllMessagesFromUser(@PathVariable Integer account_id) {
+    List<Message> allMessagesFromUser = messageService.getAllMessagesFromUser(account_id);
+    return ResponseEntity.ok(allMessagesFromUser);
+  }
 }

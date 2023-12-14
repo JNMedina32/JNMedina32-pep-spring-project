@@ -10,7 +10,6 @@ import com.example.exception.CustomExceptions.*;
 @ControllerAdvice
 public class GlobalExceptionsHandler {
   
-
   @ExceptionHandler(InvalidUsernameOrPasswordException.class)
   public ResponseEntity<String> handleInvalidUsernameOrPassword(InvalidUsernameOrPasswordException e){
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());

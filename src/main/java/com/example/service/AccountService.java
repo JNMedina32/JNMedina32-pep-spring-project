@@ -6,7 +6,6 @@ import com.example.entity.Account;
 import com.example.repository.AccountRepository;
 import com.example.exception.CustomExceptions.*;
 
-
 @Service
 public class AccountService {
 
@@ -27,6 +26,10 @@ public class AccountService {
     return null;
   }
 
+  /**This method is used to validate username is not empty, password is long enough, and username is not already taken
+   * @param account
+   * @return boolean true if passes all cases
+   */
   public boolean validRegistration(Account account){
     if(account.getUsername().isEmpty()){
       throw new InputInvalidException("Username cannot be empty.");

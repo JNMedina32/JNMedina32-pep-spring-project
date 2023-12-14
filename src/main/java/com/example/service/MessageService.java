@@ -6,6 +6,7 @@ import com.example.entity.Message;
 import com.example.exception.CustomExceptions.*;
 import com.example.repository.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +47,16 @@ public class MessageService {
     }
   }
 
+  public List<Message> getAllMessagesFromUser(Integer posted_by) {
+    Optional<List<Message>> messageListOptional = messageRepository.findAllPostedBy(posted_by);
+    return messageListOptional.orElse(new ArrayList<>());
+}
 
+
+  /**This method is used to validate messages are not empty, within the 255 characters and valid posted_by fk to account_id
+   * @param message
+   * @return boolean true if passes all cases
+   */
   public boolean validMessage(Message message){
     if(message.getMessage_text().isEmpty()){
       throw new InputInvalidException("Message cannot be empty.");
