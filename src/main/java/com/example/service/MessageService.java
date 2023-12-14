@@ -7,6 +7,7 @@ import com.example.exception.CustomExceptions.*;
 import com.example.repository.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MessageService {
@@ -36,6 +37,13 @@ public class MessageService {
 
   public void deleteMessage(Integer message_id){
     messageRepository.deleteById(message_id);
+  }
+
+  public void updateMessage(Message messageToUpdate, String updatedText){
+    messageToUpdate.setMessage_text(updatedText);
+    if(validMessage(messageToUpdate)){
+      messageRepository.save(messageToUpdate);
+    }
   }
 
 
